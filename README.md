@@ -1,7 +1,7 @@
 ws-repl
 =======
 
-Arbitrary REPL in the browser using [websocketd](https://github.com/joewalnes/websocketd).
+Arbitrary REPL in a web-page using [websocketd](https://github.com/joewalnes/websocketd).
 
 Quick Start
 -----------
