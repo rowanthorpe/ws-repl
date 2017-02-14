@@ -44,6 +44,10 @@ Backend invocation examples
 
       `websocketd --address=0.0.0.0 --port=8080 sh -c 'while IFS= read -r input; do printf "You said: %s\\n" "${input}"; done'`
 
+* poor man's SSH if run over https with http-auth? (just kidding)
+
+      `websocketd --address=0.0.0.0 --port=8080 sh -c 'sh 2>&1'`
+
 Screenshot
 ----------
 
