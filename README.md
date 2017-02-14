@@ -25,8 +25,8 @@ Notes
   to mess around with it.
 * Lastly, don't run the backend websocketd as root. That would be profoundly silly.
 
-Examples
---------
+Backend invocation examples
+---------------------------
 
 * picolisp REPL:
 
