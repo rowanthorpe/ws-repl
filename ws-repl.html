@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<!--
+
+ ws-repl
+  (c) 2017 Rowan Thorpe
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+  <head>
+    <title>ws-repl</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0.4em;
+      }
+      #output {
+        margin: 0px 0px 0.4em 0px;
+        padding: 0.4em;
+        height: calc(100vh - 4em);
+        background-color: #999;
+        border-width: 0.1em;
+        border-color: #000;
+        border-style: solid;
+        overflow: auto;
+        text-align: left;
+      }
+      #msg {
+        margin: 0px;
+        padding: 0.2em;
+        width: 99%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <pre id="output"></pre>
+    <input id="msg" type="text" autofocus="autofocus" tabindex="1" />
+    <script>
+      // EDIT THESE IF YOU WANT
+      var server = '127.0.0.1';
+      var bufferLines = 2000;
+      var cursor = '&#02502;';
+      // UP TO HERE
+
+      var splitBuf = [''];
+      var hiddenEl = document.createElement('textarea');
+      var outputEl = document.getElementById('output');
+      var msgEl = document.getElementById('msg');
+
+      function htmlEncode(str) {
+        hiddenEl.innerHTML = str;
+        return hiddenEl.innerHTML;
+      }
+
+      function htmlDecode(str) {
+        hiddenEl.innerHTML = str;
+        return hiddenEl.childNodes.length === 0 ? '' : hiddenEl.childNodes[0].nodeValue;
+      }
+
+      function nonGraphicalToPage(e) {
+        if (e.keyCode === 8) { // backspace
+          var len = splitBuf.length;
+          splitBuf[len - 1] = htmlEncode(htmlDecode(splitBuf[len - 1]).slice(0, -1));
+          outputEl.innerHTML = splitBuf.join('\n') + cursor;
+          outputEl.scrollTop = 999999;
+        }
+      }
+
+      function typeToPage(e) {
+        if (e.keyCode === 13) { // enter
+          splitBuf[splitBuf.length] = '';
+          send();
+          outputEl.innerHTML = splitBuf.join('\n') + cursor;
+          outputEl.scrollTop = 999999;
+          return false;
+        } else {
+          var len = splitBuf.length;
+          splitBuf[len - 1] = htmlEncode(splitBuf[len - 1] + String.fromCharCode(e.keyCode));
+          outputEl.innerHTML = splitBuf.join('\n') + cursor;
+        }
+        outputEl.scrollTop = 999999;
+      }
+
+      function replyToPage(str) {
+        var len = splitBuf.length;
+        splitBuf[len - 1] = '<span style="color:darkred">' + htmlEncode(str) + '</span>';
+        splitBuf[len] = '';
+        outputEl.innerHTML = splitBuf.join('\n') + cursor;
+        outputEl.scrollTop = 999999;
+      }
+
+      function send() {
+        ws.send(msgEl.value);
+        msgEl.value = '';
+        msgEl.focus();
+      }
+
+      var ws = new WebSocket('ws://' + server + '/ws-repl');
+      ws.addEventListener('open', function (event) { outputEl.style.backgroundColor = '#9c9'; });
+      ws.addEventListener('message', function (event) { replyToPage(event.data, true); });
+      ws.addEventListener('close', function (event) { outputEl.style.backgroundColor = '#933'; });
+      outputEl.innerHTML = cursor;
+      msgEl.addEventListener('keypress', function (event) { typeToPage(event); });
+      msgEl.addEventListener('keydown', function (event) { nonGraphicalToPage(event); });
+
+    </script>
+
+  </body>
+</html>
