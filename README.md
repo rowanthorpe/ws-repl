@@ -32,7 +32,8 @@ Notes
 * This presumes a relatively recent browser with the usual HTML5 capabilities, code has not been bloated to accomodate old
   browsers - that can easily be done with backwards-compat javascript shims.
 * In the interests of simplicity this includes no security provisions, so if you use it in a public-facing web-page **BE SURE**
-  to include some form of password/token protection, and if the backend can do anything invasive be sure to sandbox it.
+  to sandbox it if it does anything invasive or non-trivial, and/or include some form of password/token protection if you intend
+  it for trusted users.
 * Even then, if running anything more complex than a basic echo-server still think hard how much you trust your logged-in users
   to mess around with it.
 * Lastly, don't run the backend websocketd as root. That would be profoundly silly.
