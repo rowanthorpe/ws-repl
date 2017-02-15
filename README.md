@@ -12,6 +12,15 @@ Quick Start
 * Run the backend process in websocketd (see the examples.sh file for inspiration)
 * Browse to the page
 
+Widget detail
+-------------
+
+The javascript can be used as a widget on arbitrary web-pages. Just place `<div id="repl"></div>` wherever you want it to appear.
+It can be customized extensively by passing parameters to the init function, for example:
+```
+wsrepl({socketProto: 'wss', bufferLines=300, replBorderStyle: 'dashed'});
+```
+
 Notes
 -----
 
@@ -30,28 +39,30 @@ Backend invocation examples
 
 * picolisp REPL:
 
-      `websocketd --address=0.0.0.0 --port=8080 pil`
+      `websocketd --address=127.0.0.1 --port=8080 pil`
 
 * picolisp REPL (with sed to trim ': '):
 
-      `websocketd --address=0.0.0.0 --port=8080 sh -c 'pil | sed -u -e "s/^: //"'`
+      `websocketd --address=127.0.0.1 --port=8080 sh -c 'pil | sed -u -e "s/^: //"'`
 
 * ruby REPL:
 
-      `websocketd --address=0.0.0.0 --port=8080 irb`
+      `websocketd --address=127.0.0.1 --port=8080 irb`
 
 * simple echo server:
 
-      `websocketd --address=0.0.0.0 --port=8080 sh -c 'while IFS= read -r input; do printf "You said: %s\\n" "${input}"; done'`
+      `websocketd --address=127.0.0.1 --port=8080 sh -c 'while IFS= read -r input; do printf "You said: %s\\n" "${input}"; done'`
 
 * poor man's SSH if run over https with http-auth? (just kidding)
 
-      `websocketd --address=0.0.0.0 --port=8080 sh -c 'sh 2>&1'`
+      `websocketd --address=127.0.0.1 --port=8080 sh -c 'sh 2>&1'`
 
-Screenshot
-----------
+Screenshots
+-----------
 
-![ws-repl screenshot](./ws-repl-screenshot.png)
+![ws-repl screenshot](./ws-repl-screenshot1.png)
+![ws-repl screenshot](./ws-repl-screenshot2.png)
+![ws-repl screenshot](./ws-repl-screenshot3.png)
 
 Code
 ----
