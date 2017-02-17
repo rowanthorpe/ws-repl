@@ -23,7 +23,7 @@ example:
 wsrepl({socketProto: 'wss', bufferLines=300, replBorderStyle: 'dashed'});
 ```
 
-See `defArgs` in the js lib file to see what can be customised.
+See `defArgs` in ws-repl.js to see what can be customised.
 
 Notes
 -----
