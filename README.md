@@ -28,8 +28,8 @@ See `defArgs` in ws-repl.js to see what can be customised.
 Notes
 -----
 
-* This just pipes STDIN/STDOUT from/to the browser, so any interactive process using things more complex than that, like ncurses,
-  will of course not work.
+* This just pipes STDIN/STDOUT from/to the browser, so any highly interactive process which uses terminal control-codes
+  (e.g. ncurses) will of course not work.
 * This presumes a relatively recent browser with the usual HTML5 capabilities, code has not been bloated to accomodate old
   browsers - that can easily be done with backwards-compat javascript shims.
 * In the interests of simplicity this includes no security provisions, so if you use it in a public-facing web-page **BE SURE**
