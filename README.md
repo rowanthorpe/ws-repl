@@ -16,7 +16,8 @@ Widget detail
 -------------
 
 The javascript can be used as a widget on arbitrary web-pages. Just place `<div id="repl"></div>` wherever you want it to appear.
-It can be customised extensively by passing parameters to the init function, for example:
+It can be customised extensively (including changing the div's id from "repl") by passing parameters to the init function, for
+example:
 
 ```
 wsrepl({socketProto: 'wss', bufferLines=300, replBorderStyle: 'dashed'});

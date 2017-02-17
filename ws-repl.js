@@ -19,6 +19,7 @@
 function wsrepl(customArgs) {
 
 var defArgs = {
+    widgetName: 'repl',
     serverName: '127.0.0.1',
     socketPrefix: '/ws-repl',
     socketProto: 'ws',
@@ -50,7 +51,7 @@ var arg = Object.assign({}, defArgs, customArgs);
 // constants
 
 var splitBuf = [''];
-var mainEl  = document.getElementById('repl');
+var mainEl  = document.getElementById(widgetName);
 var hiddenEl = document.createElement('textarea');
 var replEl = document.createElement('pre');
 replEl.setAttribute('id', arg.replElName);
