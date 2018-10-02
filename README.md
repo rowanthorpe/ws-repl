@@ -44,23 +44,23 @@ Backend invocation examples
 
 * picolisp REPL:
 
-      `websocketd --address=127.0.0.1 --port=8080 pil`
+      websocketd --address=127.0.0.1 --port=8080 pil
 
 * picolisp REPL (with sed to trim ': '):
 
-      `websocketd --address=127.0.0.1 --port=8080 sh -c 'pil | sed -u -e "s/^: //"'`
+      websocketd --address=127.0.0.1 --port=8080 sh -c 'pil | sed -u -e "s/^: //"'
 
 * ruby REPL:
 
-      `websocketd --address=127.0.0.1 --port=8080 irb`
+      websocketd --address=127.0.0.1 --port=8080 irb
 
 * simple echo server:
 
-      `websocketd --address=127.0.0.1 --port=8080 sh -c 'while IFS= read -r input; do printf "You said: %s\\n" "${input}"; done'`
+      websocketd --address=127.0.0.1 --port=8080 sh -c 'while IFS= read -r input; do printf "You said: %s\\n" "${input}"; done'
 
 * poor man's SSH if run over https with http-auth? (just kidding)
 
-      `websocketd --address=127.0.0.1 --port=8080 sh -c 'sh 2>&1'`
+      websocketd --address=127.0.0.1 --port=8080 sh -c 'sh 2>&1'
 
 Screenshots
 -----------
