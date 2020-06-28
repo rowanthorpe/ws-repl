@@ -51,7 +51,7 @@ var arg = Object.assign({}, defArgs, customArgs);
 // constants
 
 var splitBuf = [''];
-var mainEl  = document.getElementById(widgetName);
+var mainEl  = document.getElementById(arg.widgetName);
 var hiddenEl = document.createElement('textarea');
 var replEl = document.createElement('pre');
 replEl.setAttribute('id', arg.replElName);
